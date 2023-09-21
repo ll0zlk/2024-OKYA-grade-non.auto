@@ -6,7 +6,7 @@
   <title>2024학년도 창녕옥야고 지정과목 내신 성적</title>
 </head>
 <body>
-  <h1>2024학년도 창녕옥야고 지정과목 내신 성적</h1>
+  <h1 onclick="refreshPage()">2024학년도 창녕옥야고 지정과목 내신 성적</h1>
   <table>
     <tr>
       <th></th>
@@ -40,7 +40,7 @@
     </tr>
   </table>
   
-  <tr>
+    <tr>
       <td colspan="4">
         <button type="button" style="width: 89px; "onclick="calculateScores()">점수 산출</button>
         <input type="text" id="total-score-input" readonly style="width: 171px; background-color: rgb(179, 235, 216);" placeholder="내신 성적 산출 점수" onclick="copyTotalScore()">
@@ -49,10 +49,18 @@
   </table>
 
   <p>
-    등급: A(200), B(180), C(160), D(120), E(100)
+    등급: A(200), B(180), C(160), D(120), E(100) <br>
+  </p>
+  <p>
+    * 총점란을 클릭하면 점수가 자동으로 복사됩니다. <br>
+    * 제목을 누르면 입력란이 초기화됩니다.
   </p>
 
   <script>
+  function refreshPage() {
+    location.reload(); // 페이지 새로고침
+  }
+  
   function calculateScores() {
     // 등급별 점수 변환
     const gradeToScore = {
@@ -124,9 +132,9 @@
     const totalScoreInput = document.getElementById("total-score-input");
     totalScoreInput.select(); // 입력란의 내용을 선택
     document.execCommand("copy"); // 선택한 내용을 복사
-    alert("총점이 복사되었습니다.");
+    alert("복사 완료!");
   }
-  
+
     </script>
 </body>
 </html>
