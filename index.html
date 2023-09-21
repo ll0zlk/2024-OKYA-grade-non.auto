@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2024학년도 창녕옥야고 지정과목 내신 성적</title>
+</head>
+<body>
+  <h1>2024학년도 창녕옥야고 지정과목 내신 성적</h1>
+  <table>
+    <tr>
+      <th></th>
+      <th>국어</th>
+      <th>수학</th>
+      <th>영어</th>
+    </tr>
+    <tr>
+      <th>2학년 1학기</th>
+      <td><input type="text" name="2-1-kor" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="2-1-mat" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="2-1-eng" maxlength='1' style="width: 50px;"></td>
+    </tr>
+    <tr>
+      <th>2학년 2학기</th>
+      <td><input type="text" name="2-2-kor" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="2-2-mat" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="2-2-eng" maxlength='1' style="width: 50px;"></td>
+    </tr>
+    <tr>
+      <th>3학년 1학기</th>
+      <td><input type="text" name="3-1-kor" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="3-1-mat" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="3-1-eng" maxlength='1' style="width: 50px;"></td>
+    </tr>
+    <tr>
+      <th>3학년 2학기</th>
+      <td><input type="text" name="3-2-kor" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="3-2-mat" maxlength='1' style="width: 50px;"></td>
+      <td><input type="text" name="3-2-eng" maxlength='1' style="width: 50px;"></td>
+    </tr>
+  </table>
+  
+  <tr>
+      <td colspan="4">
+        <button type="button" style="width: 89px; "onclick="calculateScores()">점수 산출</button>
+        <input type="text" id="total-score-input" readonly style="width: 171px; background-color: rgb(179, 235, 216);" placeholder="내신 성적 산출 점수" onclick="copyTotalScore()">
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    등급: A(200), B(180), C(160), D(120), E(100)
+  </p>
+
+  <script>
+  function calculateScores() {
+    // 등급별 점수 변환
+    const gradeToScore = {
+      'A': 200,
+      'B': 180,
+      'C': 160,
+      'D': 120,
+      'E': 100
+    };
+
+    // 가중치
+    const korWeight = 0.25;
+    const matWeight = 0.5;
+    const engWeight = 0.25;
+    const semesterWeight = 0.25;
+
+    // 학기별 성적 입력 필드 이름
+    const semesterNames = [
+      "2-1-kor", "2-1-mat", "2-1-eng",
+      "2-2-kor", "2-2-mat", "2-2-eng",
+      "3-1-kor", "3-1-mat", "3-1-eng",
+      "3-2-kor", "3-2-mat", "3-2-eng"
+    ];
+
+    let allFieldsFilled = true;
+    let allFieldsValid = true;
+
+    for (const semesterName of semesterNames) {
+      const gradeInput = document.getElementsByName(semesterName)[0];
+      const grade = gradeInput.value.toUpperCase();
+        
+      if (grade === '') {
+        allFieldsFilled = false;
+        break;
+      }
+
+      if (!(grade in gradeToScore)) {
+        allFieldsValid = false;
+        alert(`올바르지 않은 등급이 입력되었습니다`);
+        gradeInput.focus(); // 오류 발생한 입력 필드에 포커스
+        break;
+      }
+    }
+
+    if (!allFieldsFilled) {
+      alert('모든 등급을 입력해야 합니다.');
+      return;
+    }
+
+    if (!allFieldsValid) {
+      return;
+    }
+
+    // 총점 계산
+    let totalScore = 0;
+
+    for (const semesterName of semesterNames) {
+      const grade = document.getElementsByName(semesterName)[0].value.toUpperCase();
+      const score = gradeToScore[grade] || 0; // 등급에 해당하는 점수를 가져오거나 0으로 처리
+      totalScore += score * (semesterWeight * (semesterName.includes("kor") ? korWeight : (semesterName.includes("mat") ? matWeight : engWeight)));
+    }
+
+    // 총점 표시
+    const totalScoreInput = document.getElementById("total-score-input");
+    totalScoreInput.value = `${totalScore}`;
+  }
+
+  function copyTotalScore() {
+    const totalScoreInput = document.getElementById("total-score-input");
+    totalScoreInput.select(); // 입력란의 내용을 선택
+    document.execCommand("copy"); // 선택한 내용을 복사
+    alert("총점이 복사되었습니다.");
+  }
+  
+    </script>
+</body>
+</html>
