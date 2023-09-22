@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+  <title>2024학년도 창녕옥야고 지정과목 내신 성적</title>
+</head>
+<body>
+  <h1 onclick="refreshPage()">2024학년도 창녕옥야고<br>지정과목 내신 성적</h1>
+  <table>
+    <tr>
+      <th></th>
+      <th>국어</th>
+      <th>수학</th>
+      <th>영어</th>
+    </tr>
+    <tr>
+      <th>2학년 1학기</th>
+      <td><input type="text" name="2-1-kor" maxlength='1'></td>
+      <td><input type="text" name="2-1-mat" maxlength='1'></td>
+      <td><input type="text" name="2-1-eng" maxlength='1'></td>
+    </tr>
+    <tr>
+      <th>2학년 2학기</th>
+      <td><input type="text" name="2-2-kor" maxlength='1'></td>
+      <td><input type="text" name="2-2-mat" maxlength='1'></td>
+      <td><input type="text" name="2-2-eng" maxlength='1'></td>
+    </tr>
+    <tr>
+      <th>3학년 1학기</th>
+      <td><input type="text" name="3-1-kor" maxlength='1'></td>
+      <td><input type="text" name="3-1-mat" maxlength='1'></td>
+      <td><input type="text" name="3-1-eng" maxlength='1'></td>
+    </tr>
+    <tr>
+      <th>3학년 2학기</th>
+      <td><input type="text" name="3-2-kor" maxlength='1'></td>
+      <td><input type="text" name="3-2-mat" maxlength='1'></td>
+      <td><input type="text" name="3-2-eng" maxlength='1'></td>
+    </tr>
+  </table>
+  
+  <div>
+    <button type="button" onclick="calculateScores()">점수 산출</button>
+    <input type="text" id="total-score-input" readonly placeholder="내신 성적 산출 점수" onclick="copyTotalScore()">
+  </div>
+
+  <p>
+    등급: A(200), B(180), C(160), D(120), E(100) <br>
+  </p>
+  <p>
+    * 총점란을 클릭하면 점수가 자동으로 복사됩니다. <br>
+    * 제목을 누르면 입력란이 초기화됩니다.
+  </p>
+
+</body>
+</html>
