@@ -32,7 +32,7 @@ table, th, td {
 th, td {
   text-align: center;
   padding: 8px;
-  font-size: 70%;
+  white-space: nowrap;
 }
 
 th {
